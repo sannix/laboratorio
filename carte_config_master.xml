@@ -1,0 +1,13 @@
+<slave_config>
+  <slaveserver>
+    <name>CARTE_NAME</name>
+    <network_interface>CARTE_NETWORK_INTERFACE</network_interface>
+    <port>CARTE_PORT</port>
+    <username>CARTE_USER</username>
+    <password>CARTE_PASSWORD</password>
+    <master>CARTE_IS_MASTER</master>
+  </slaveserver>
+  <max_log_lines>CARTE_MAX_LOG_LINES</max_log_lines>
+  <max_log_timeout_minutes>CARTE_MAX_LOG_TIMEOUT_MINUTES</max_log_timeout_minutes>
+  <object_timeout_minutes>CARTE_OBJECT_TIMEOUT_MINUTES</object_timeout_minutes>
+</slave_config>
