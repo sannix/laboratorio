@@ -1,9 +1,35 @@
 version: '3.7'
 services:
-  carte:
+  master:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8181:8080"
-    container_name: carte_server
+      - "8181:8181"
+    environment:
+      - CARTE_PORT=8181
+      - CARTE_IS_MASTER=Y
+      - CARTE_INCLUDE_MASTERS=N
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8181"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+    restart: unless-stopped
+  slave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8182"
+    environment:
+      - CARTE_PORT=8182
+      - CARTE_IS_MASTER=N
+      - CARTE_INCLUDE_MASTERS=Y
+      - CARTE_MASTER_HOSTNAME=master
+      - CARTE_MASTER_PORT=8181
+    depends_on:
+      - master
+    links:
+      - master
+    restart: unless-stopped
