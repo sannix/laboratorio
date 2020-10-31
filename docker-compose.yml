@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8181:8181"
+      - 8181:8181/tcp
     environment:
       - CARTE_PORT=8181
       - CARTE_IS_MASTER=Y
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8182"
+      - 8182:8182/tcp
     environment:
       - CARTE_PORT=8182
       - CARTE_IS_MASTER=N
